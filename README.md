@@ -19,8 +19,7 @@ of the local network.
 ## Official downloads
 
 This public repository contains official ScreenBridge installer downloads and
-release notes only. The application source repository is private and is not
-published here.
+release notes only.
 
 ## Download
 
