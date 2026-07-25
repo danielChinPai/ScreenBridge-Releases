@@ -6,10 +6,9 @@ published here.
 
 ## Download
 
-Open the [Releases](../../releases) page and download both:
+Open the [Releases](../../releases) page and download:
 
 - `ScreenBridge-<version>-win-x64-setup.exe`
-- `ScreenBridge-<version>-win-x64-setup.exe.sha256`
 
 The installer places ScreenBridge under `C:\Program Files\ScreenBridge`,
 creates a Start menu shortcut, and selects the desktop-shortcut option by
@@ -28,17 +27,6 @@ Authenticode-signed, the virtual display driver uses a development test
 certificate, and the bundled Android APK is debug-signed. Windows SmartScreen
 may warn before installation. The installer explains these conditions before
 making system changes.
-
-## Verify the download
-
-In PowerShell:
-
-```powershell
-Get-FileHash .\ScreenBridge-0.1.0-win-x64-setup.exe -Algorithm SHA256
-Get-Content .\ScreenBridge-0.1.0-win-x64-setup.exe.sha256
-```
-
-The two SHA-256 values must match.
 
 GitHub automatically displays “Source code” archives for every release. In
 this downloads-only repository those archives contain only this public release
