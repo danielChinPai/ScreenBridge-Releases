@@ -35,7 +35,7 @@ APK, ADB runtime, virtual display driver, and uninstaller.
 ## Alpha requirements
 
 - Windows 11 x64
-- An NVIDIA GPU with NVENC support
+- A graphics driver with hardware H.264 encoding support
 - An Android 11 or newer device
 - USB debugging enabled on the Android device
 
