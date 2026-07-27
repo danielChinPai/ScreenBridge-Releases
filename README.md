@@ -1,50 +1,55 @@
 <p align="center">
-  <img src="assets/screenbridge-windows.png"
-       alt="ScreenBridge icon"
-       width="180">
+  <img
+    src="assets/screenbridge-windows.png"
+    alt="ScreenBridge"
+    width="180">
 </p>
 
-<h1 align="center">ScreenBridge</h1>
+<h1 align="center">ScreenBridge Downloads</h1>
 
 <p align="center">
-  <strong>把 Android 裝置變成 Windows 的有線 USB 外接螢幕。</strong><br>
-  Turn an Android device into a wired USB external display for Windows.
+  <strong>Turn an Android device into a wired USB external display for Windows.</strong>
 </p>
 
-ScreenBridge extends the Windows desktop to an Android device through a direct
-USB connection. Each display can keep its own resolution, refresh rate,
-position, and device assignment, while the video path remains on USB instead
-of the local network.
-
-## Official downloads
-
-This public repository contains official ScreenBridge installer downloads and
-release notes only.
+ScreenBridge creates independent Windows virtual displays, streams them to
+Android over USB, and returns Android touch input to Windows.
 
 ## Download
 
-Open the [Releases](../../releases) page and download:
+Open the [Releases](../../releases) page and download the newest
+`ScreenBridge-<version>-win-x64-setup.exe`.
 
-- `ScreenBridge-<version>-win-x64-setup.exe`
+The self-contained installer adds the Windows application, ScreenBridge IddCx
+display driver, Android receiver, USB transport tools, uninstaller, Start menu
+shortcut, and optional desktop shortcut.
 
-The installer places ScreenBridge under `C:\Program Files\ScreenBridge`,
-creates a Start menu shortcut, and selects the desktop-shortcut option by
-default. It includes the Windows application, .NET runtime, Android receiver
-APK, ADB runtime, virtual display driver, and uninstaller.
+## Version 0.4.0
 
-## Alpha requirements
+- Separates capture and encoding across independent D3D11 devices and worker
+  threads.
+- Uses a bounded shared GPU texture pool and always consumes the newest
+  completed display update.
+- Stops encoding duplicate frames while a desktop is unchanged, reducing GPU
+  use beside games and other foreground applications.
+- Imports Intel Quick Sync input surfaces directly when supported.
+- Wakes Android frame presentation only when decoded output is waiting.
+- Keeps Android touch reception asynchronous and leaves physical Windows
+  keyboard and mouse input on the native Windows input path.
+
+The selected FPS is a maximum update rate. A static desktop can report a lower
+frame rate because no duplicate frames are generated.
+
+## Requirements
 
 - Windows 11 x64
-- A graphics driver with hardware H.264 encoding support
-- An Android 11 or newer device
-- USB debugging enabled on the Android device
+- Android 11 or later
+- A GPU with hardware H.264 encoding support
+- A data-capable USB connection with Android USB debugging enabled
+- Administrator access for display driver installation
 
-The current 0.x builds are alpha releases. The setup executable is not yet
+The current `0.x` line is an alpha release. The setup executable is not yet
 Authenticode-signed, the virtual display driver uses a development test
-certificate, and the bundled Android APK is debug-signed. Windows SmartScreen
-may warn before installation. The installer explains these conditions before
-making system changes.
+certificate, and the bundled Android receiver is debug-signed.
 
-GitHub automatically displays “Source code” archives for every release. In
-this downloads-only repository those archives contain only this public release
-metadata, not the ScreenBridge application source code.
+Source code and technical documentation are available in the
+[ScreenBridge repository](https://github.com/danielChinPai/ScreenBridge).
