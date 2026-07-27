@@ -8,11 +8,12 @@
 <h1 align="center">ScreenBridge Downloads</h1>
 
 <p align="center">
-  <strong>Turn an Android device into a wired USB external display for Windows.</strong>
+  <strong>Turn an Android device into a Windows external display over USB or local Wi-Fi.</strong>
 </p>
 
 ScreenBridge creates independent Windows virtual displays, streams them to
-Android over USB, and returns Android touch input to Windows.
+Android over USB or the local network, and returns Android touch input to
+Windows.
 
 ## Download
 
@@ -21,20 +22,25 @@ Open the [Releases](../../releases) page and download the newest
 
 The self-contained installer adds the Windows application, ScreenBridge IddCx
 display driver, Android receiver, USB transport tools, uninstaller, Start menu
-shortcut, and optional desktop shortcut.
+shortcut, and optional desktop shortcut. It does not require a separately
+installed .NET runtime.
 
-## Version 0.4.0
+## Version 0.5.0
 
-- Separates capture and encoding across independent D3D11 devices and worker
-  threads.
-- Uses a bounded shared GPU texture pool and always consumes the newest
-  completed display update.
-- Stops encoding duplicate frames while a desktop is unchanged, reducing GPU
-  use beside games and other foreground applications.
-- Imports Intel Quick Sync input surfaces directly when supported.
-- Wakes Android frame presentation only when decoded output is waiting.
-- Keeps Android touch reception asynchronous and leaves physical Windows
-  keyboard and mouse input on the native Windows input path.
+- Adds a native local Wi-Fi transport with encrypted TCP control and paced UDP
+  H.264 video.
+- Uses P-256 ECDH for first pairing, HMAC-authenticated remembered sessions,
+  and independent AES-256-GCM keys for control and video.
+- Recovers short packet-loss bursts with adaptive Reed-Solomon parity and a
+  bounded 2–8 ms reordering window.
+- Uses receiver loss, jitter, queue, and frame-assembly feedback to adjust
+  packet pacing and recovery overhead.
+- Treats USB and Wi-Fi connections for the same physical receiver as one
+  device assignment.
+- Adds English and Traditional Chinese interface selection plus expanded
+  stream status metrics.
+- Preserves the independent capture, hardware-encoding, touch, and display
+  state of every active virtual display.
 
 The selected FPS is a maximum update rate. A static desktop can report a lower
 frame rate because no duplicate frames are generated.
@@ -44,8 +50,13 @@ frame rate because no duplicate frames are generated.
 - Windows 11 x64
 - Android 11 or later
 - A GPU with hardware H.264 encoding support
-- A data-capable USB connection with Android USB debugging enabled
+- A data-capable USB connection with Android USB debugging enabled, or both
+  endpoints on the same local IPv4 network
 - Administrator access for display driver installation
+
+Local Wi-Fi streaming does not use internet bandwidth. A low-contention
+5 GHz or 6 GHz connection is recommended for high-resolution,
+high-refresh-rate modes.
 
 The current `0.x` line is an alpha release. The setup executable is not yet
 Authenticode-signed, the virtual display driver uses a development test
