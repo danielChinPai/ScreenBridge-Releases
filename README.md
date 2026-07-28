@@ -25,30 +25,20 @@ display driver, Android receiver, USB transport tools, uninstaller, Start menu
 shortcut, and optional desktop shortcut. It does not require a separately
 installed .NET runtime.
 
-## Version 0.5.1
+## Version 0.5.2
 
-- Adds a local QR download dialog for installing the Android receiver without
-  first connecting a USB cable.
-- Serves the packaged APK only while the dialog is open through a
-  token-protected local-network address.
-- Selects the active network automatically and exposes interface selection
-  only when more than one usable address is available.
-- Ships a release APK signed with the stable ScreenBridge Android signing
-  identity for consistent future updates.
-- Adds a native local Wi-Fi transport with encrypted TCP control and paced UDP
-  H.264 video.
-- Uses P-256 ECDH for first pairing, HMAC-authenticated remembered sessions,
-  and independent AES-256-GCM keys for control and video.
-- Recovers short packet-loss bursts with adaptive Reed-Solomon parity and a
-  bounded 2–8 ms reordering window.
-- Uses receiver loss, jitter, queue, and frame-assembly feedback to adjust
-  packet pacing and recovery overhead.
-- Treats USB and Wi-Fi connections for the same physical receiver as one
-  device assignment.
-- Adds English and Traditional Chinese interface selection plus expanded
-  stream status metrics.
-- Preserves the independent capture, hardware-encoding, touch, and display
-  state of every active virtual display.
+- Reports the installed Android receiver version during local Wi-Fi discovery.
+- Marks receivers below the packaged version as requiring an update.
+- Transfers the packaged APK directly to an updater-capable paired receiver
+  through a freshly authenticated AES-256-GCM Wi-Fi session.
+- Validates the package name, version, and stable ScreenBridge signing
+  certificate before Android stages the update.
+- Retains Android's required device-user installation confirmation.
+- Keeps the local QR download path available for installation and for
+  receivers that predate network updating.
+- Streams through direct USB or authenticated local Wi-Fi transport with
+  independent virtual displays, hardware H.264 encoding, touch input, and
+  persistent per-display settings.
 
 The selected FPS is a maximum update rate. A static desktop can report a lower
 frame rate because no duplicate frames are generated.
