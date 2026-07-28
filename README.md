@@ -56,8 +56,7 @@ frame rate because no duplicate frames are generated.
 - Administrator access for display driver installation
 
 Local Wi-Fi streaming does not use internet bandwidth. A low-contention
-5 GHz or 6 GHz connection is recommended for high-resolution,
-high-refresh-rate modes.
+5 GHz or 6 GHz connection is recommended.
 
 The current `0.x` line is an alpha release. The setup executable is not yet
 Authenticode-signed, the virtual display driver uses a development test
