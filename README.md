@@ -25,8 +25,16 @@ display driver, Android receiver, USB transport tools, uninstaller, Start menu
 shortcut, and optional desktop shortcut. It does not require a separately
 installed .NET runtime.
 
-## Version 0.5.0
+## Version 0.5.1
 
+- Adds a local QR download dialog for installing the Android receiver without
+  first connecting a USB cable.
+- Serves the packaged APK only while the dialog is open through a
+  token-protected local-network address.
+- Selects the active network automatically and exposes interface selection
+  only when more than one usable address is available.
+- Ships a release APK signed with the stable ScreenBridge Android signing
+  identity for consistent future updates.
 - Adds a native local Wi-Fi transport with encrypted TCP control and paced UDP
   H.264 video.
 - Uses P-256 ECDH for first pairing, HMAC-authenticated remembered sessions,
@@ -60,7 +68,8 @@ high-refresh-rate modes.
 
 The current `0.x` line is an alpha release. The setup executable is not yet
 Authenticode-signed, the virtual display driver uses a development test
-certificate, and the bundled Android receiver is debug-signed.
+certificate, and the bundled Android receiver uses the stable ScreenBridge
+release signature.
 
 Source code and technical documentation are available in the
 [ScreenBridge repository](https://github.com/danielChinPai/ScreenBridge).
