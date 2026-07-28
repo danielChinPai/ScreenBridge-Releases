@@ -25,20 +25,22 @@ display driver, Android receiver, USB transport tools, uninstaller, Start menu
 shortcut, and optional desktop shortcut. It does not require a separately
 installed .NET runtime.
 
-## Version 0.5.2
+## Version 0.5.3
 
-- Reports the installed Android receiver version during local Wi-Fi discovery.
-- Marks receivers below the packaged version as requiring an update.
-- Transfers the packaged APK directly to an updater-capable paired receiver
-  through a freshly authenticated AES-256-GCM Wi-Fi session.
-- Validates the package name, version, and stable ScreenBridge signing
-  certificate before Android stages the update.
-- Retains Android's required device-user installation confirmation.
-- Keeps the local QR download path available for installation and for
-  receivers that predate network updating.
-- Streams through direct USB or authenticated local Wi-Fi transport with
-  independent virtual displays, hardware H.264 encoding, touch input, and
-  persistent per-display settings.
+- Adds a persistent H.264 or HEVC codec selection for every virtual display.
+- Uses hardware encoding through NVIDIA NVENC, Intel oneVPL, or a supported
+  Media Foundation encoder and validates Android hardware-decoder support.
+- Separates desktop capture and encoding with a bounded shared GPU texture
+  pool so slow frames do not create a stale-frame backlog.
+- Treats the selected Wi-Fi bitrate as the complete transport budget and
+  dynamically gives the encoder the capacity left after packet headers and
+  active Reed-Solomon recovery.
+- Adapts recovery overhead from receiver loss, queue, and jitter feedback
+  without restarting capture or the hardware encoder.
+- Uses high-resolution UDP pacing and enables Windows media-streaming mode on
+  connected Wi-Fi interfaces for more stable local-network delivery.
+- Retains direct USB transport, authenticated Wi-Fi pairing and updating,
+  touch input, independent displays, and persistent per-display settings.
 
 The selected FPS is a maximum update rate. A static desktop can report a lower
 frame rate because no duplicate frames are generated.
@@ -47,7 +49,8 @@ frame rate because no duplicate frames are generated.
 
 - Windows 11 x64
 - Android 11 or later
-- A GPU with hardware H.264 encoding support
+- A GPU with hardware H.264 encoding support; HEVC requires compatible
+  hardware on both Windows and Android
 - A data-capable USB connection with Android USB debugging enabled, or both
   endpoints on the same local IPv4 network
 - Administrator access for display driver installation
