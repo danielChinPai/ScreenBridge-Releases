@@ -22,25 +22,23 @@ Open the [Releases](../../releases) page and download the newest
 
 The self-contained installer adds the Windows application, ScreenBridge IddCx
 display driver, Android receiver, USB transport tools, uninstaller, Start menu
-shortcut, and optional desktop shortcut. It does not require a separately
-installed .NET runtime.
+shortcut, and optional desktop shortcut.
 
-## Version 0.5.3
+## Version 0.6.0
 
-- Adds a persistent H.264 or HEVC codec selection for every virtual display.
-- Uses hardware encoding through NVIDIA NVENC, Intel oneVPL, or a supported
-  Media Foundation encoder and validates Android hardware-decoder support.
-- Separates desktop capture and encoding with a bounded shared GPU texture
-  pool so slow frames do not create a stale-frame backlog.
-- Treats the selected Wi-Fi bitrate as the complete transport budget and
-  dynamically gives the encoder the capacity left after packet headers and
-  active Reed-Solomon recovery.
-- Adapts recovery overhead from receiver loss, queue, and jitter feedback
-  without restarting capture or the hardware encoder.
-- Uses high-resolution UDP pacing and enables Windows media-streaming mode on
-  connected Wi-Fi interfaces for more stable local-network delivery.
-- Retains direct USB transport, authenticated Wi-Fi pairing and updating,
-  touch input, independent displays, and persistent per-display settings.
+- Adds a choice between a virtual display and a dedicated Android touchpad
+  when creating a ScreenBridge accessory.
+- Adds pointer acceleration, tap-to-click, tap-and-drag, auxiliary-finger drag
+  extension, two-finger scrolling with inertia, pinch zoom, palm rejection,
+  and haptic confirmation.
+- Adds direction-latched two-finger browser back and forward navigation,
+  three- and four-finger Windows gestures, and optional three-finger drag.
+- Carries ordered physical touch contacts over paired USB or encrypted local
+  Wi-Fi sessions with exclusive per-device ownership.
+- Adds persistent touchpad preferences and clean session release when the
+  Android receiver or Windows application closes.
+- Updates the Windows interface, settings flow, tray lifecycle, and
+  single-instance behavior for display and touchpad sessions.
 
 The selected FPS is a maximum update rate. A static desktop can report a lower
 frame rate because no duplicate frames are generated.
@@ -55,8 +53,7 @@ frame rate because no duplicate frames are generated.
   endpoints on the same local IPv4 network
 - Administrator access for display driver installation
 
-Local Wi-Fi streaming does not use internet bandwidth. A low-contention
-5 GHz or 6 GHz connection is recommended.
+A low-contention 5 GHz or 6 GHz connection is recommended.
 
 The current `0.x` line is an alpha release. The setup executable is not yet
 Authenticode-signed, the virtual display driver uses a development test
