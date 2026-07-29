@@ -21,8 +21,8 @@ Open the [Releases](../../releases) page and download the newest
 `ScreenBridge-<version>-win-x64-setup.exe`.
 
 The self-contained installer adds the Windows application, ScreenBridge IddCx
-display driver, Android receiver, USB transport tools, uninstaller, Start menu
-shortcut, and optional desktop shortcut.
+display driver, virtual HID input driver, Android receiver, USB transport
+tools, uninstaller, Start menu shortcut, and optional desktop shortcut.
 
 ## Version 0.6.0
 
@@ -33,6 +33,9 @@ shortcut, and optional desktop shortcut.
   and haptic confirmation.
 - Adds direction-latched two-finger browser back and forward navigation,
   three- and four-finger Windows gestures, and optional three-finger drag.
+- Routes touchpad pointer movement and buttons through a virtual HID device so
+  they remain available on elevated Windows surfaces and secure confirmation
+  prompts.
 - Carries ordered physical touch contacts over paired USB or encrypted local
   Wi-Fi sessions with exclusive per-device ownership.
 - Adds persistent touchpad preferences and clean session release when the
@@ -51,14 +54,14 @@ frame rate because no duplicate frames are generated.
   hardware on both Windows and Android
 - A data-capable USB connection with Android USB debugging enabled, or both
   endpoints on the same local IPv4 network
-- Administrator access for display driver installation
+- Administrator access for driver installation
 
 A low-contention 5 GHz or 6 GHz connection is recommended.
 
 The current `0.x` line is an alpha release. The setup executable is not yet
-Authenticode-signed, the virtual display driver uses a development test
-certificate, and the bundled Android receiver uses the stable ScreenBridge
-release signature.
+Authenticode-signed, the virtual display and input drivers use a development
+test certificate, and the bundled Android receiver uses the stable
+ScreenBridge release signature.
 
 Source code and technical documentation are available in the
 [ScreenBridge repository](https://github.com/danielChinPai/ScreenBridge).
